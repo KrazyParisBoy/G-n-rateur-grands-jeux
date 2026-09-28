@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="fr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101828">
+<title>Studio de Grands Jeux — V4 Alpha</title>
+<style>
+:root{--bg:#f4f6fb;--ink:#101828;--muted:#667085;--line:#d0d5dd;--purple:#6938ef;--green:#067647;--orange:#b54708;--red:#b42318;--blue:#175cd3}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",sans-serif;line-height:1.45}header{background:linear-gradient(135deg,#101828,#312e81);color:white;padding:27px 17px}.wrap,main,footer{max-width:1180px;margin:auto}h1{margin:0;font-size:clamp(27px,5vw,43px)}header p{margin:7px 0 0;color:#e4e7ec}main{padding:16px}.card,.game{background:#fff;border:1px solid var(--line);border-radius:16px;padding:17px;margin-bottom:15px;box-shadow:0 2px 9px #1018280a}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px}@media(max-width:850px){.grid{grid-template-columns:1fr 1fr}}@media(max-width:520px){.grid{grid-template-columns:1fr}}label{font-size:13px;font-weight:800}input,select,textarea{width:100%;margin-top:5px;padding:10px;border:1px solid #cbd2dc;border-radius:9px;background:white;font:inherit}textarea{min-height:72px}.checks{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}@media(max-width:800px){.checks{grid-template-columns:1fr 1fr}}.check{border:1px solid #e4e7ec;border-radius:9px;padding:9px;background:#f9fafb}.check input{width:auto;margin:0 5px 0 0}.actions{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}button{border:0;border-radius:10px;padding:11px 14px;font:inherit;font-weight:850;color:#fff;background:var(--purple);cursor:pointer}.secondary{background:#e4e7ec;color:#101828}.green{background:#087443}.blue{background:#175cd3}.summary{display:grid;grid-template-columns:repeat(4,1fr);gap:9px}@media(max-width:700px){.summary{grid-template-columns:1fr 1fr}}.metric,.box{border:1px solid #e4e7ec;border-radius:11px;padding:11px;background:#f9fafb}.metric b{display:block;font-size:20px}.small{font-size:12px;color:var(--muted)}.arch{border:1px solid #d0d5dd;border-radius:14px;padding:14px;margin-top:11px}.arch.selected{outline:3px solid #c7d7fe}.chips{display:flex;flex-wrap:wrap;gap:6px;margin:7px 0}.chip{background:#f4f3ff;color:#5925dc;border-radius:99px;padding:4px 8px;font-size:12px;font-weight:800}.score{font-weight:900;color:var(--green)}.choose{margin-top:8px;background:#344054}.good,.warn,.bad{padding:9px 10px;border-radius:8px;margin-top:8px}.good{background:#ecfdf3;border-left:4px solid #12b76a}.warn{background:#fffaeb;border-left:4px solid #f79009}.bad{background:#fff4f2;border-left:4px solid #f04438}.cols{display:grid;grid-template-columns:1fr 1fr;gap:10px}@media(max-width:700px){.cols{grid-template-columns:1fr}}.box strong{display:block;margin-bottom:5px}.flow{display:flex;flex-wrap:wrap;gap:6px;align-items:center}.step{background:#101828;color:white;padding:7px 9px;border-radius:8px;font-size:12px;font-weight:800}.arrow{color:#98a2b3;font-weight:900}.mission{border-left:4px solid #7f56d9;background:#fafaff;border-radius:8px;padding:11px;margin:9px 0}.event{border-left:4px solid #f79009;background:#fffaeb;border-radius:8px;padding:10px;margin:8px 0}.timeline{display:grid;gap:7px}.time{display:grid;grid-template-columns:90px 1fr;gap:9px;border-bottom:1px solid #eaecf0;padding:7px 0}.time b{color:var(--blue)}.hidden{display:none}footer{padding:0 18px 30px;color:var(--muted);font-size:12px}@media print{body{background:white}.no-print,footer{display:none!important}header{background:white;color:#000;border-bottom:2px solid #000}header p{color:#000}.card,.game{box-shadow:none;break-inside:avoid}}
+</style></head><body>
+<header><div class="wrap"><h1>🎲 Studio de Grands Jeux — V4 Alpha</h1><p>Analyse → architecture → génération du jeu → fiche organisateur.</p></div></header>
+<main>
+<section class="card no-print"><h2>1. Cahier des charges</h2><div class="grid">
+<label>Enfants<input id="kids" type="number" value="80" min="6" max="500"></label><label>Durée (min)<input id="duration" type="number" value="120" min="30" max="300"></label><label>Animateurs<input id="animators" type="number" value="10" min="1" max="80"></label>
+<label>Âge<select id="age"><option>6–8 ans</option><option selected>8–10 ans</option><option>10–12 ans</option><option>6–12 ans</option></select></label>
+<label>Lieu<select id="place"><option>Intérieur</option><option selected>Extérieur</option><option>Mixte</option></select></label><label>Espace<select id="space"><option>Petit</option><option selected>Moyen</option><option>Grand</option></select></label>
+<label>Matériel<select id="material"><option>Faible</option><option selected>Moyen</option><option>Important</option></select></label><label>Thème<input id="theme" value="Le manoir mystérieux"></label>
+</div><label style="display:block;margin-top:10px">Pitch / idée de départ (facultatif)<textarea id="pitch" placeholder="Ex. Trois monstres rôdent dans le manoir. Les enfants doivent découvrir leurs faiblesses..."></textarea></label>
+<h3>Expérience recherchée</h3><div class="checks">
+<label class="check"><input type="checkbox" value="story" checked>Histoire</label><label class="check"><input type="checkbox" value="strategy">Stratégie</label><label class="check"><input type="checkbox" value="coop" checked>Coopération</label><label class="check"><input type="checkbox" value="competition">Compétition</label><label class="check"><input type="checkbox" value="explore">Exploration</label><label class="check"><input type="checkbox" value="investigate">Enquête</label><label class="check"><input type="checkbox" value="physical" checked>Action</label><label class="check"><input type="checkbox" value="creative">Créativité</label><label class="check"><input type="checkbox" value="resources">Ressources</label><label class="check"><input type="checkbox" value="factions">Factions</label>
+</div><div class="actions"><button id="analyze">🧠 Analyser les architectures</button><button id="auto" class="blue">✨ Générer directement le meilleur jeu</button><button id="print" class="secondary">🖨️ Imprimer / PDF</button></div></section>
+<section id="audit" class="card"><h2>2. Audit</h2><div class="small">Lance l'analyse.</div></section>
+<section id="architectures" class="card"><h2>3. Choisir l'architecture</h2><div id="archout" class="small">Les propositions apparaîtront ici.</div></section>
+<section id="studio" class="game hidden"><h2>4. Grand jeu généré</h2><div id="gameout"></div></section>
+</main><footer>V4 Alpha — génération locale autonome. Aucun serveur ni API requis.</footer>
+<script>
+(function(){
+const $=id=>document.getElementById(id), qa=s=>[...document.querySelectorAll(s)];
+const SK={
+hub:["A04","Hub","story coop resources",3],rotation:["A05","Rotation","physical competition coop",3],tree:["A02","Arbre","story strategy investigate",2],network:["A03","Graphe de missions","strategy investigate explore",3],territory:["C03","Territoires","factions strategy competition explore physical",3],investigation:["D02","Enquête en réseau","investigate story explore",2],collection:["E05","Collection","explore resources coop",3],economy:["E02","Économie","strategy resources competition",3],construction:["E04","Construction collective","creative coop resources",3],factions:["G01","Factions asymétriques","factions strategy competition story",3],countdown:["H01","Compte à rebours","physical story coop",3],threat:["H02","Menace croissante","story coop physical",3],puzzle:["D03","Puzzle collectif","investigate coop creative",2],boss:["J01","Boss progressif","story coop physical strategy",3],tournament:["B04","Tournoi","competition physical strategy",3]
+};
+const REC=[
+["Hub sous pression",["hub","economy","threat"],["Briefing","Hub","Missions","Retour","Menace","Finale"]],
+["Expédition des fragments",["network","collection","countdown"],["Départ","Exploration","Mission","Fragment","Déblocage","Finale"]],
+["Grande enquête",["investigation","network","puzzle"],["Mystère","Pistes","Recherche","Recoupement","Assemblage","Révélation"]],
+["Guerre des territoires",["territory","factions","economy"],["Factions","Exploration","Conquête","Ressources","Crise","Finale"]],
+["Chasse au boss",["hub","threat","boss"],["Base","Missions","Faiblesses","Menace","Affaiblissement","Boss"]],
+["Cité à reconstruire",["collection","construction","countdown"],["Collecte","Mission","Pièces","Construction","Crise","Activation"]],
+["Tournoi stratégique",["rotation","tournament","economy"],["Équipes","Épreuve","Score","Rotation","Investissement","Finale"]],
+["Arbre des décisions",["tree","investigation","boss"],["Choix","Branche","Indice","Conséquence","Convergence","Finale"]]
+];
+function esc(x){return String(x).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function get(){return{kids:+$("kids").value||80,duration:+$("duration").value||120,animators:+$("animators").value||10,age:$("age").value,place:$("place").value,space:$("space").value,material:$("material").value,theme:$("theme").value||"Ton univers",pitch:$("pitch").value.trim(),prefs:qa("input[type=checkbox]:checked").map(x=>x.value)}}
+function logistics(d){let size=d.age.startsWith("6–8")?8:10,teams=Math.ceil(d.kids/size),actual=Math.ceil(d.kids/teams),field=Math.max(1,d.animators-(d.animators>=5?1:0)),stations=Math.max(1,Math.min(teams,Math.floor(field/1.5))),load=d.kids/d.animators;return{teams,actual,field,stations,load}}
+function score(r,d,l){let s=50;r[1].forEach(k=>{let tags=SK[k][2].split(" ");d.prefs.forEach(p=>{if(tags.includes(p))s+=4});if(d.kids>=60&&SK[k][3]===3)s+=3});if(l.load>16&&r[1].includes("tournament"))s-=8;if(d.space==="Petit"&&r[1].includes("territory"))s-=12;if(d.age==="6–8 ans"&&(r[1].includes("investigation")||r[1].includes("economy")))s-=5;return Math.max(25,Math.min(98,s))}
+function ranked(d,l){return REC.map(r=>[r,score(r,d,l)]).sort((a,b)=>b[1]-a[1])}
+function audit(d,l){let notes=[];notes.push(l.load<=10?["good","Encadrement favorable."]:l.load<=16?["warn","Encadrement tendu : prévoir des postes autonomes."]:["bad","Encadrement critique : simplifier fortement les règles et réduire les postes."]);if(l.teams>l.stations*2)notes.push(["warn",`${l.teams} équipes pour environ ${l.stations} postes encadrés : prévoir des missions parallèles/autonomes.`]);else notes.push(["good","Circulation compatible avec le nombre de postes."]);return `<h2>2. Audit</h2><div class="summary"><div class="metric">Équipes<b>${l.teams}</b><span class="small">≈ ${l.actual} enfants</span></div><div class="metric">Postes possibles<b>${l.stations}</b><span class="small">${l.field} animateurs terrain</span></div><div class="metric">Charge<b>${l.load.toFixed(1)}</b><span class="small">enfants / animateur</span></div><div class="metric">Durée<b>${d.duration} min</b><span class="small">briefing + jeu + finale</span></div></div>${notes.map(n=>`<div class="${n[0]}">${n[1]}</div>`).join("")}`}
+function analyze(){
+ let d=get(),l=logistics(d),rr=ranked(d,l);$("audit").innerHTML=audit(d,l);
+ $("archout").innerHTML=rr.slice(0,5).map((x,i)=>{let r=x[0];return `<div class="arch" id="a${i}"><b>${i+1}. ${esc(r[0])}</b> <span class="score">${x[1]}%</span><div class="chips">${r[1].map(k=>`<span class="chip">${SK[k][0]} · ${SK[k][1]}</span>`).join("")}</div><div class="flow">${r[2].map((f,j)=>(j?'<span class="arrow">→</span>':'')+`<span class="step">${f}</span>`).join("")}</div><button class="choose" data-i="${i}">Choisir et générer ce jeu</button></div>`}).join("");
+ qa(".choose").forEach(b=>b.onclick=()=>generateGame(rr[+b.dataset.i][0],d,l));
+ return {d,l,rr};
+}
+function missionSet(d,r){
+ const action=d.prefs.includes("physical");
+ const inv=d.prefs.includes("investigate");
+ const res=d.prefs.includes("resources");
+ let m=[
+ ["La première clé", action?"Transporter un objet symbolique à travers un parcours sans le perdre.":"Résoudre une épreuve d'observation pour obtenir la première clé.","Une clé / un fragment"],
+ ["Le gardien", inv?"Interroger le gardien et distinguer les informations fiables des fausses pistes.":"Réussir le défi du gardien pour obtenir son sceau.","Un sceau"],
+ ["La zone interdite", action?"Entrer dans une zone surveillée, accomplir l'objectif puis ressortir sans être touché.":"Traverser une zone à contraintes et retrouver un symbole caché.","Un symbole"],
+ ["Le choix", res?"Dépenser une partie des ressources gagnées pour acheter un avantage collectif.":"Choisir entre deux missions : plus facile avec petite récompense ou plus risquée avec grande récompense.","Avantage / ressource"],
+ ["Le dernier fragment","Combiner les informations ou objets gagnés par plusieurs équipes pour débloquer l'accès à la finale.","Fragment final"]
+ ];
+ return m
+}
+function generateGame(r,d,l){
+ qa(".arch").forEach(x=>x.classList.remove("selected"));
+ let idx=REC.indexOf(r); if(idx>=0&&$("a"+idx))$("a"+idx).classList.add("selected");
+ let missions=missionSet(d,r), play=Math.max(30,d.duration-25), rounds=Math.min(4,Math.max(2,Math.floor(play/20))), roundMin=Math.floor(play/rounds);
+ let intro=d.pitch?d.pitch:`Dans l'univers « ${d.theme} », un déséquilibre menace le monde. Les équipes doivent accomplir des missions, réunir les éléments nécessaires et comprendre comment neutraliser la menace avant la finale.`;
+ let roles=[`1 coordinateur : briefing, temps, événements et finale.`,`${Math.max(1,l.stations)} animateur(s) de postes ou PNJ.`,`Les animateurs restants circulent, sécurisent les déplacements et relancent les équipes.`];
+ let mats=["Cartes ou fiches de missions","Jetons / fragments / clés symboliques","Feuilles de score ou de suivi","Chronomètre","Matériel simple pour les épreuves","Éléments visuels correspondant au thème"];
+ if(d.material==="Faible")mats=["Feuilles imprimées","Crayons","Jetons papier","Chronomètre / téléphone","Objets de récupération"];
+ let timeline=[["0–10 min","Briefing, histoire, règles et équipes"],["10–"+(10+roundMin)+" min","Première boucle de missions"],[(10+roundMin)+"–"+(10+roundMin*2)+" min","Deuxième boucle + premier événement"],[(10+roundMin*2)+"–"+Math.max(20,d.duration-15)+" min","Progression, nouvelles missions et montée de la menace"],[(d.duration-15)+"–"+d.duration+" min","Finale collective + conclusion narrative"]];
+ let events=["⚠️ La menace progresse : une zone ou une règle change pendant 5 minutes.","🔄 Échange : deux équipes doivent mettre en commun une information ou une ressource.","🎁 Opportunité : une mission bonus permet d'obtenir un avantage pour la finale."];
+ $("studio").classList.remove("hidden");
+ $("gameout").innerHTML=`<h2>${esc(d.theme)} — ${esc(r[0])}</h2><div class="chips">${r[1].map(k=>`<span class="chip">${SK[k][0]} · ${SK[k][1]}</span>`).join("")}</div>
+ <div class="cols"><div class="box"><strong>🎬 Scénario</strong>${esc(intro)}</div><div class="box"><strong>🎯 Objectif</strong>Les ${l.teams} équipes doivent progresser dans les missions, réunir les ressources nécessaires et réussir la finale avant la fin des ${d.duration} minutes.</div></div>
+ <h3>Architecture du jeu</h3><div class="flow">${r[2].map((f,j)=>(j?'<span class="arrow">→</span>':'')+`<span class="step">${f}</span>`).join("")}</div>
+ <h3>Missions générées</h3>${missions.map((m,i)=>`<div class="mission"><b>Mission ${i+1} — ${esc(m[0])}</b><br>${esc(m[1])}<br><span class="small">Récompense : ${esc(m[2])}</span></div>`).join("")}
+ <h3>Événements dynamiques</h3>${events.map(e=>`<div class="event">${e}</div>`).join("")}
+ <div class="cols"><div class="box"><strong>👥 Répartition</strong>${l.teams} équipes d'environ ${l.actual} enfants.<br>${roles.map(x=>"• "+esc(x)+"<br>").join("")}</div><div class="box"><strong>🎒 Matériel</strong>${mats.map(x=>"• "+esc(x)+"<br>").join("")}</div></div>
+ <h3>Chronologie indicative</h3><div class="timeline">${timeline.map(t=>`<div class="time"><b>${t[0]}</b><span>${t[1]}</span></div>`).join("")}</div>
+ <h3>🏁 Finale</h3><div class="good"><b>Finale convergente :</b> les ressources et informations obtenues pendant les missions deviennent utiles en même temps. Chaque équipe apporte une partie de la solution ; le groupe entier doit assembler, activer ou utiliser ces éléments pour vaincre la menace finale. Aucun enfant n'est éliminé de la conclusion.</div>
+ <h3>🔁 Boucle fondamentale</h3><div class="box"><b>Choisir une mission → agir → obtenir un résultat → gagner une ressource/information → retour/progression → événement → nouvelle mission → finale.</b></div>`;
+ $("studio").scrollIntoView({behavior:"smooth"});
+}
+$("analyze").onclick=analyze;$("auto").onclick=()=>{let x=analyze();generateGame(x.rr[0][0],x.d,x.l)};$("print").onclick=()=>window.print();analyze();
+})();
+</script></body></html>
